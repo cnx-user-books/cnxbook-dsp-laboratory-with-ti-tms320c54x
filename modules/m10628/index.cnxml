@@ -1,0 +1,120 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Digital Transmitter: Optimization Exercise with QPSK on TI TMS320C54x</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a71e164b-92b8-4cd8-be2b-601709b97f98</md:uuid>
+</metadata>
+
+
+
+
+
+  <content>
+    <section id="sec3">
+      <title>Implementation</title>
+      <para id="p13">
+	You will implement the complete system shown in <link document="m10042" target-id="fig1">Digital Transmitter:
+	Introduction to Quadrature Phase-Shift Keying</link>.  Then
+	you will optimize the system for execution time.  The
+	optimization process will probably be much easier if you plan
+	for optimization before you begin any programming.
+      </para>
+      <section id="sec3a">
+	<title>PN generator</title>
+	<para id="p1">
+	  Once you have planned your program strategy, implement the
+	  PN generator from <link document="m10042" target-id="fig2">Digital Transmitter: Introduction to
+	  Quadrature Phase-Shift Keying</link> and verify that it is
+	  working.  You may wish to refer to the description of
+	  assembly instructions for logical operations in
+	  <cite><cite-title>Section 2-2</cite-title></cite> of the <cite url="http://www-s.ti.com/sc/psheets/spru172c/spru172c.pdf"><cite-title>Mnemonic
+	  Instruction Set</cite-title></cite> reference.  Initialize the shift
+	  register to one.
+	</para>
+      </section>
+      
+      <section id="sec3b">
+	<title>Transmitter</title>
+	<para id="p2">
+	  For your transmitter implementation, use the signal
+	  constellation shown in <link document="m10042" target-id="fig6">Digital Transmitter: Introduction to
+	  Quadrature Phase-Shift Keying</link>, a digital carrier
+	  frequency
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ω</m:mi>
+		<m:mi>c</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:math> of
+	  <m:math>
+	    <m:apply>
+	      <m:divide/>
+	      <m:pi/>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:math> and a digital symbol period of 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>T</m:mi>
+		  <m:mi>symb</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:cn>16</m:cn>
+	    </m:apply>
+	  </m:math> samples.  
+	</para>
+	<para id="p3">
+	  Viewing the transmitted signal on the oscilloscope may help
+	  you determine whether your code works properly, but you
+	  should check it more carefully by setting breakpoints in
+	  Code Composer and using the <code>Memory</code> option from
+	  the <code>View</code> menu to view the contents of memory.
+	  A <term>vector signal analyzer</term> (<term>VSA</term>)
+	  provides another method of testing, which is described in
+	  <link document="m10667">Vector Signal Analyzer: Testing a
+	  QPSK Transmitter</link>.
+	</para>
+      </section>
+
+      <section id="grading">
+	<title>Grading</title>
+	<para id="p4">
+	  One objective of this exercise is to teach optimization and
+	  efficient code techniques. For this reason, your performance
+	  will be judged primarily on the total execution time of your
+	  system.  Note that by execution time we mean cycle count,
+	  not the number of instructions in your program.  Remember
+	  that several of the TI TMS320C54xx instructions take more
+	  than one cycle. The multicycle instructions are primarily
+	  the multi-word instructions, including instructions that
+	  take immediates, like <code>stm</code>, and instructions
+	  using direct addressing of memory (such as <code>ld
+	  *(temp),A</code>).  Branch and repeat statements also
+	  require several cycles to execute.  The <cite url="http://www-s.ti.com/sc/psheets/spru172c/spru172c.pdf"><cite-title>Mnemonic
+	  Instruction Set</cite-title></cite> reference will tell you how many
+	  cycles required for each instruction; make sure you look at
+	  the cycle count for the syntax you are using.  It is also
+	  possible to use the debugger to determine the number of
+	  cycles used by your code.
+	</para>
+	<para id="p15">
+	  You will be graded based on the number of cycles used
+	  between the return from one <code>WAITDATA</code> call and
+	  the arrival at the next <code>WAITDATA</code> call. If the
+	  number of cycles between one <code>WAITDATA</code> and the
+	  next is variable, the maximum possible number of cycles will
+	  be used. You must use the <link url="http://cnx.rice.edu/author/workgroups/90/m10017/core.asm">core.asm</link>
+	  file as provided; this file may not be modified. You
+	  explicitly may not change the number of samples read and
+	  written by each <code>WAITDATA</code> call!  We reserve the
+	  right to test your code by substituting the <link url="http://cnx.rice.edu/author/workgroups/90/m10017/vectcore.asm">test
+	  vector core file</link>.
+	</para>
+      </section>
+    </section>
+
+  </content>
+</document>

@@ -1,0 +1,88 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Digital Transmitter: MATLAB Exercise for Quadrature Phase-Shift Keying</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>abd22661-18e2-45ac-95f6-da65316c25a8</md:uuid>
+</metadata>
+
+
+
+
+
+
+  <content>
+    <section id="sec2">
+      <title>MATLAB Simulation</title>
+      <para id="p11">
+	MATLAB is commonly used to design filters and determine frequency 
+	responses of systems, but it is also very useful as a simulation tool.
+      </para>
+      <para id="p12">
+	Use the following MATLAB code skeleton to simulate the QPSK
+	transmitter from <link document="m10042" target-id="fig1">Digital
+	Transmitter: Introduction to Quadrature Phase-Shift
+	Keying</link> and fill in the incomplete portions.  Note that
+	the code is not complete and will not execute properly as
+	written.  How does the spectrum of the transmitted signal
+	change with
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>T</m:mi>
+	      <m:mi>symb</m:mi>
+	    </m:msub></m:ci>
+	</m:math>?  How do you interpret the figure created by 
+	<code>plot(rI,rQ)</code>?
+      </para>
+
+      <code display="block" id="idp1679248">
+	
+	1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	2  % MATLAB Code Skeleton for QPSK Digital Transmitter 
+	3
+	4  % Generate random bits
+	5  bits_per_symbol=2;
+	6  num_symbols=128;
+	7  numbits=bits_per_symbol*num_symbols;
+	8  bits=rand(1,numbits)&gt;0.5;
+	9  
+	10  Tsymb = 16;                  % symbol length
+	11  omega = pi/2;                % carrier frequency
+	12
+	13  %%%%%%%%%%%%%%%%%%%%%%%%
+	14  % Transmitter section
+	15                             % initialize transmit sequence
+	16  t = zeros(1,num_symbols*Tsymb);
+	17  i = 1;                       % initialize bit index
+	18  n = 1;                       % initialize time index
+	19  
+	20  while (n &lt;= num_symbols*Tsymb)
+	21   if ( bits(i:i+1) == [ 0 0])
+	22       Igain = 1/sqrt(2);
+	23       Qgain = 1/sqrt(2);
+	24   % ------&gt;Insert code here&lt;-------
+	25
+	26   end;
+	27   i = i+2;                    % next 2 bits
+	28
+	29   % Generate symbol to be transmitted
+	30   t(n:n+Tsymb-1) =    %------&gt;Insert code here&lt;-------
+	31                  
+	32   n = n+Tsymb;                % next symbol
+	33  end;
+	34
+	35  % Show the transmitted signal and its spectrum
+	36  % ------&gt;Insert code here&lt;-------
+	37
+	38  % Show the transmitted signal constellation 
+	39  rI = t.*cos(omega*[1:num_symbols*Tsymb]);
+	40  rQ = t.*sin(omega*[1:num_symbols*Tsymb]);
+	41
+	42  % Filter out the double-frequency term
+	43  low_pass=fir1(512,0.5);
+	44  rI=conv(rI,low_pass);
+	45  rQ=conv(rQ,low_pass);
+	46  figure;
+	47  plot(rI,rQ);
+	
+      </code>
+    </section>
+  </content>
+  </document>

@@ -1,0 +1,132 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10078</md:content-id>
+    <md:title>DSP Laboratory with TI TMS320C54x</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/1.0">Creative Commons Attribution License</md:license>
+    <md:uuid>afcd60aa-9044-4b97-9a2a-7c3166db34b4</md:uuid>
+<md:slug>dsp-laboratory-with-ti-tms320c54x</md:slug>
+</metadata>
+  <col:content>
+    <col:module document="m10681"/>
+    <col:subcollection>
+      <md:title>Required Labs</md:title>
+      <col:content>
+        <col:subcollection>
+          <md:title>Lab 0</md:title>
+          <col:content>
+            <col:module document="m10017"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Lab 1</md:title>
+          <col:content>
+            <col:module document="m10022"/>
+            <col:module document="m10023"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Lab 2</md:title>
+          <col:content>
+            <col:module document="m10024"/>
+            <col:module document="m10620"/>
+            <col:module document="m10815"/>
+            <col:module document="m10621"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Lab 3</md:title>
+          <col:content>
+            <col:module document="m10025"/>
+            <col:module document="m10623"/>
+            <col:module document="m10813"/>
+            <col:module document="m10624"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Lab 4</md:title>
+          <col:content>
+            <col:module document="m10027"/>
+            <col:module document="m10625"/>
+            <col:module document="m10626"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Lab 5</md:title>
+          <col:content>
+            <col:module document="m10042"/>
+            <col:module document="m10627"/>
+            <col:module document="m10628"/>
+            <col:module document="m10667"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Project Labs</md:title>
+      <col:content>
+        <col:subcollection>
+          <md:title>Digital Receiver</md:title>
+          <col:content>
+            <col:module document="m10485"/>
+            <col:module document="m10478"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Audio Effects</md:title>
+          <col:content>
+            <col:module document="m10480"/>
+            <col:module document="m10483"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Surround Sound</md:title>
+          <col:content>
+            <col:module document="m10484"/>
+            <col:module document="m10479"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Adaptive Filtering</md:title>
+          <col:content>
+            <col:module document="m10481"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Speech Processing</md:title>
+          <col:content>
+            <col:module document="m10482"/>
+            <col:module document="m10824"/>
+            <col:module document="m10825"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>General References</md:title>
+      <col:content>
+        <col:subcollection>
+          <md:title>Processor</md:title>
+          <col:content>
+            <col:module document="m10808"/>
+            <col:module document="m10806"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Core File</md:title>
+          <col:content>
+            <col:module document="m10513"/>
+            <col:module document="m10823"/>
+            <col:module document="m10821"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Code Composer</md:title>
+          <col:content>
+            <col:module document="m10522"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

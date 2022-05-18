@@ -1,0 +1,110 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Spectrum Analyzer: Introduction to Fast Fourier Transform</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>5275f2ec-477f-4d07-acb2-5748280dd5ff</md:uuid>
+</metadata>
+
+
+
+
+
+
+  <content>
+    <section id="sec1">
+      <title>Introduction</title>
+      <para id="p2">
+	The <term>Fast Fourier Transform</term> (<term>FFT</term>) can
+	be used to analyze the spectral content of a signal.  Recall
+	that the FFT is an efficient algorithm for computing the
+	<term>Discrete Fourier Transform</term> (<term>DFT</term>), a
+	frequency-sampled version of the <term>DTFT</term>.
+      </para>
+      <section id="new1">
+	<title>DFT</title>
+	<para id="p3">
+	  <equation id="eqn1">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn" class="discrete">X</m:ci>
+		  <m:ci>k</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>n</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>0</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>N</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">x</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>	
+			  <m:times/>
+			  <m:imaginaryi/>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			    </m:apply>
+			    <m:ci>N</m:ci>
+			  </m:apply>
+			  <m:ci>n</m:ci>
+			  <m:ci>k</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation> where
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:apply>
+		<m:and/>
+		<m:ci>n</m:ci>
+		<m:ci>k</m:ci>
+	      </m:apply>
+	      <m:set>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+		<m:ci>…</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>N</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+	</para>
+      </section>
+      <para id="p4">
+	Because the FFT is a block-based algorithm, its computation is
+	performed at the block I/O rate, in contrast to other
+	exercises in which processing occurred on a sample-by-sample
+	basis.
+      </para>
+    </section>
+  </content>
+  </document>

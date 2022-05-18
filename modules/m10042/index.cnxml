@@ -1,0 +1,284 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Digital Transmitter: Introduction to Quadrature Phase-Shift Keying</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>9c0f63f6-b0a5-411e-a450-862675767dfc</md:uuid>
+</metadata>
+
+
+
+
+
+
+  <content>
+    <section id="sec1">
+      <title>Introduction</title>
+      <para id="p1">
+	The <term>quadrature phase-shift keying</term>
+	(<term>QPSK</term>) digital transmitter of <link target-id="fig1"/> is one of many DSP systems used in the
+	communications industry.  The following sections describe the
+	transmitter in detail.
+      </para>
+
+      <section id="sec1a">
+	<title>Quadrature phase shift keying (QPSK)</title>
+	<para id="p2">
+	  QPSK is a method for transmitting digital information across
+	  an analog channel.  Data bits are grouped into pairs, and
+	  each pair is represented by a particular waveform, called a
+	  symbol, to be sent across the channel after modulating the
+	  carrier.  (The receiver will demodulate the signal and look
+	  at the recovered symbol to determine which pair of bits was
+	  sent.)  This requires having a unique symbol for each
+	  possible combination of data bits in a pair.  Because there
+	  are four possible combinations of data bits in a pair, QPSK
+	  creates four different symbols, one for each pair, by
+	  changing the I gain and Q gain for the cosine and sine
+	  modulators in <link target-id="fig1"/>.  To transmit each pair
+	  of bits in the source data, the gains are kept constant over
+	  a fixed number of output samples known as the <term>symbol
+	  period</term>,
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>T</m:mi>
+		<m:mi>symb</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>.  The <term>symbol rate</term>,
+	  <m:math>
+	    <m:ci><m:msub> 
+		<m:mi>F</m:mi> 
+		<m:mi>symb</m:mi>
+	      </m:msub></m:ci> 
+	  </m:math>, is a fraction of the board's sample rate,
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>F</m:mi>
+		<m:mi>s</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>.  For our sample rate of 44.1 kHz and a symbol
+	  period of 16, the symbol rate is
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>F</m:mi>
+		  <m:mi>symb</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>44100</m:cn>
+		<m:cn>16</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> symbols per second.
+	</para>
+	<para id="p3">
+	  The QPSK transmitter system uses both the sine and cosine at
+	  the carrier frequency to transmit two separate message
+	  signals, 
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn" class="discrete"><m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mi>I</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math> and 
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn" class="discrete"><m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mi>Q</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math>, referred to as the <term>in-phase</term> and
+	  <term>quadrature</term> signals.  Provided that a coherent
+	  receiver system is employed, both the in-phase and
+	  quadrature signals can be recovered exactly, allowing us to
+	  transmit twice the amount of signal information at the same
+	  carrier frequency as we could with a single oscillator.
+	</para>
+	<figure id="fig1">
+	  <title>QPSK Transmitter</title>
+	  <media id="idp596880" alt=""><image src="../../media/trans.png" mime-type="image/png"/></media>
+	</figure>
+      </section>
+
+      <section id="sec1c">
+	<title>Pseudo-noise generation</title>
+	<para id="p8">
+	  The input bits to the transmitter are provided by a special
+	  shift-register, called a <term>pseudo-noise generator</term>
+	  (<term>PN generator</term>), in <link target-id="fig2"/>.  A PN
+	  generator produces a sequence of bits that appears random.
+	  The PN sequence will repeat with period
+	  <m:math>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:power/>
+		<m:cn>2</m:cn>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:math>, where 
+	  <m:math>
+	    <m:ci>B</m:ci>
+	  </m:math> is the width in bits of the shift register.
+	</para>
+	<para id="p9">
+	  As shown in <link target-id="fig2"/>, the PN generator is
+	  simply a shift-register and XOR gate.  Bits 1, 5, 6, and 7
+	  of the shift-register are XORed together and the result is
+	  shifted into the highest bit of the register.  The lowest
+	  bit, which is shifted out, is the output of the PN
+	  generator.
+	</para>
+	<para id="p10">
+	  The PN generator is a useful source of random data bits for
+	  system testing.  We can use the output of a PN generator as
+	  a "typical" sequence that could be transmitted by a user.
+	  The sequence is a good data model because communications
+	  systems tend to randomize the bits transmitted for efficient
+	  use of bandwidth.  PN generators have other applications in
+	  communications, notably in the Code Division Multiple Access
+	  schemes used by cellular telephones.
+	</para>
+
+	<figure id="fig2">
+	  <title>Pseudo-Noise Generator</title>
+	  <media id="idm6407680" alt=""><image src="../../media/pn-gen.png" mime-type="image/png"/></media>
+	</figure>
+
+
+      </section>
+
+      <section id="sec1ba">
+	<title>Series-to-parallel conversion</title>
+	<para id="p5a">
+	  The PN generator produces one output bit at a time, but each
+	  symbol the system transmits will encode two bits.
+	  Therefore, we require the series-to-parallel conversion to
+	  group the output bits from the PN generator into pairs of
+	  bits so that they can be mapped to a symbol.
+	</para>
+      </section>
+
+
+
+      <section id="sec1b">
+	<title>I/Q look-up table</title>
+	<para id="p5">
+	  This block is responsible for mapping pairs of bits to
+	  in-phase and quadrature gains.  Such a mapping is often
+	  described by a signal constellation.  <link target-id="fig3"/>
+	  shows the data mapping constellation for the QPSK system.
+	  In this case the data are grouped into pairs and each pair
+	  maps to a separate in-phase
+	  (<m:math>
+	    <m:ci>I</m:ci>
+	  </m:math>) and quadrature 
+	  (<m:math>
+	    <m:ci>Q</m:ci>
+	  </m:math>) gain.  These 
+	  <m:math>
+	    <m:ci>I</m:ci>
+	  </m:math> and 
+	  <m:math>
+	    <m:ci>Q</m:ci>
+	  </m:math> gains are then used to generate the in-phase and
+	  quadrature message signals,
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn" class="discrete"><m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mi>I</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math> and 
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn" class="discrete"><m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mi>Q</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>
+
+	<figure id="fig3">
+	  <title>QPSK Constellation</title>
+	  <media id="idm7280848" alt=""><image src="../../media/qpsk_const.png" mime-type="image/png"/></media>
+	</figure>
+
+	<para id="p6">
+	  One way to implement this mapping is by using a look-up
+	  table.  A pair of data bits can be interpreted as an
+	  offset into an 
+	  <m:math>
+	    <m:ci>I</m:ci>
+	  </m:math>/
+	  <m:math>
+	    <m:ci>Q</m:ci>
+	  </m:math> table that stores the in-phase and quadrature
+	  gains.  Note that since each
+	  <m:math>
+	    <m:ci>I</m:ci>
+	  </m:math>/
+	  <m:math>
+	    <m:ci>Q</m:ci>
+	  </m:math> mapping defines a symbol, this mapping is done at
+	  the symbol rate
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>F</m:mi>
+		<m:mi>symb</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>, or once for every 
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>T</m:mi>
+		<m:mi>symb</m:mi>
+	      </m:msub></m:ci>
+	  </m:math> DSP samples.  <footnote id="idp2771424">The 
+	  <m:math>
+	    <m:ci>I</m:ci>
+	  </m:math> and 
+	  <m:math>
+	    <m:ci>Q</m:ci>
+	  </m:math> gains of
+	  <m:math>
+	    <m:apply>
+	      <m:mo>±</m:mo>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:root/>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> have been chosen to ensure that the magnitude of
+	  the transmitted signal never exceeds 1.0.</footnote>
+	</para>
+
+	<para id="p7">
+	  The constellation bit-assignments are such that any two
+	  adjacent constellation points differ by only one bit.  This
+	  assignment is called <term>Gray coding</term> and helps
+	  reduce the number of bit errors made in the event of a
+	  received symbol error.
+	</para>
+      </section>
+
+    </section>
+  </content>
+</document>

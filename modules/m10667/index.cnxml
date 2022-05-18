@@ -1,0 +1,53 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Vector Signal Analyzer: Testing a QPSK Transmitter on Hewlett Packard 89440A </title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>26c2f0c0-07bc-40af-999e-5cdc793129af</md:uuid>
+</metadata>
+
+
+
+
+<content>
+    <section id="sec4">
+      <title>Introduction</title>
+      <para id="p16">
+	The <term>vector signal analyzer</term> (<term>VSA</term>) is
+	an instrument capable of demodulating digital signals.  You
+	may use the VSA to demodulate a QPSK signal and display the
+	symbol constellation.  The VSA will also display the signal
+	spectrum.
+      </para>
+	<para id="p17">
+	  Plug the output from
+	  the DSP board into the "Channel 1" jack on the front of the
+	  vector signal analyzer and turn on the analyzer. 
+	  The next two sections explain how to set up the VSA to display 
+	the constellation or the signal spectrum.  
+	</para>
+
+      <section id="sec4a">
+	<title>Displaying the constellation</title>
+	<para id="p18">
+	To display your QPSK constellation, enter the following key sequence:
+	  <list id="list1">
+	    <item>"<code>Freq</code>" button, followed by F1 (center), 11.025 (on
+	      the keypad), and F3 (KHz)</item>
+	    <item>F2 (span), 22, and F3 (KHz)</item>
+	    <item>"<code>Range</code>," then F5 (ch1 autorange up/down)</item>
+	    <item>"<code>Instrument Mode</code>," then F3 (demodulation)</item>
+	  </list>
+	</para>
+      </section>
+
+      <section id="sec4b">
+	<title>Displaying the signal spectrum</title>
+	<para id="p19">
+	  The VSA is capable of displaying the spectrum of a signal.
+	  Connect the output of your transmitter output to the VSA.
+	  Enter "<code>Instrument Mode</code>" and then F1 (Scalar) to
+	  see the spectrum.
+	</para>
+      </section>
+    </section>
+
+  </content>
+</document>
